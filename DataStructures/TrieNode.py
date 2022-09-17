@@ -122,9 +122,9 @@ class TrieNode():
     return self.__tryEvaluateKeysByPosition(keys, 0, [])
 
   def __tryEvaluateKeysByPosition(self, keys, position, values) -> bool:
-    values = values + list(self.getValues())
 
     if len(keys) <= position:
+      values = values + list(self.getValues())
       return True, values
 
     currentKey = keys[position]
