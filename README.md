@@ -85,6 +85,16 @@ for file in fileIterable:
 
 > C:\directory\subDirectory\subFile1.dat
 
+Now, if we want to limit the results only to our .dat file, we can use the optional fileFilter constructor parameter.
 
+```
+path = "C:\directory"
+fileIterable = FileIterable(path, fileFilter="*.dat")
+
+for file in fileIterable:
+  print(file)
+```
+
+> C:\directory\subDirectory\subFile1.dat
 
 
