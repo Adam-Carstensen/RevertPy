@@ -44,7 +44,7 @@ This returns a Tuple<bool, list<object>>.
 success, values = trie.evaluateKeys(["I'm", "feeling"])
 print(f"{success}: {values}")
 ```
-True: [10.0, -10.0]
+> True: [10.0, -10.0]
 
 Just the words "I'm feeling" match "I'm feeling great", and "I'm feeling terrible", if we don't require a full match. 
 
@@ -52,7 +52,7 @@ Just the words "I'm feeling" match "I'm feeling great", and "I'm feeling terribl
 success, values = trie.evaluateKeys(["feeling", "great"])
 print(f"{success}: {values}")
 ```
-True: [10.0]
+> True: [10.0]
 
 However, the words "feeling great" only match "I'm feeling great", if we don't require a full match.
 
@@ -60,7 +60,7 @@ However, the words "feeling great" only match "I'm feeling great", if we don't r
 success, values = trie.evaluateKeys(["I'm", "feeling", "fine"])
 print(f"{success}: {values}")
 ```
-True: [0.0, 2.0]
+> True: [0.0, 2.0]
 
 Searching for the full match "I'm feeling fine", returns both of the values which were inserted for that key array.
 
@@ -79,11 +79,9 @@ for file in fileIterable:
   print(file)
 ```
 
-C:\directory\file1.txt
-
-C:\directory\file2.txt
-
-C:\directory\subDirectory\subFile1.dat
+> C:\directory\file1.txt
+> C:\directory\file2.txt
+> C:\directory\subDirectory\subFile1.dat
 
 
 
