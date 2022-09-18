@@ -34,10 +34,10 @@ trie.addKeys(["I'm", "feeling", "fine"], 0.0)
 trie.addKeys(["I'm", "feeling", "fine"], 2.0)
 trie.addKeys(["I'm", "feeling", "bad"], -5.0)
 trie.addKeys(["I'm", "feeling", "terrible"], -10.0, allowPartial=True)
-
 ```
 
 The use of allowPartial will vary by your use case, but let's look at what it does, by looking at the evaluateKeys method.
+
 This returns a Tuple<bool, list<object>>.
 
 ```
@@ -80,8 +80,11 @@ for file in fileIterable:
 ```
 
 C:\directory\file1.txt
+
 C:\directory\file2.txt
+
 C:\directory\subDirectory\subFile1.dat
+
 
 
 
