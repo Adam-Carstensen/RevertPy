@@ -80,7 +80,9 @@ for file in fileIterable:
 ```
 
 > C:\directory\file1.txt
+
 > C:\directory\file2.txt
+
 > C:\directory\subDirectory\subFile1.dat
 
 
