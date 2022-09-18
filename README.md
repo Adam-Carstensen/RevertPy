@@ -4,6 +4,8 @@ Python port of Revert Libraries
 
 Trie DataStructure
 
+FileIterable
+
 MongoRecordIndex
 MongoKeyStore 
 MongoKeyValueStore
@@ -15,7 +17,7 @@ GraphSearcher [Under Construction]
 SimpleTokenizer
 
 
-# RevertPy.DataStructures.Trie
+## RevertPy.DataStructures.Trie.py
 
 Used to search for arrays of values.  For example:
 
@@ -36,7 +38,7 @@ trie.addKeys(["I'm", "feeling", "terrible"], -10.0, allowPartial=True)
 ```
 
 The use of allowPartial will vary by your use case, but let's look at what it does, by looking at the evaluateKeys method.
-This returns a Tuple<bool, list[object]>.
+This returns a Tuple<bool, list<object>>.
 
 ```
 success, values = trie.evaluateKeys(["I'm", "feeling"])
@@ -61,5 +63,25 @@ print(f"{success}: {values}")
 True: [0.0, 2.0]
 
 Searching for the full match "I'm feeling fine", returns both of the values which were inserted for that key array.
+
+## RevertPy.IO.FileIterable.py
+
+Breadth first search of the file system starting at the rootPath and optionally navigating subFolders.
+This iterable will return each file matching the file filter.
+
+For example, on Windows, we have a directory with a sub directory and a few files:
+
+```
+path = "C:\directory"
+fileIterable = FileIterable(path)
+
+for file in fileIterable:
+  print(file)
+```
+
+C:\directory\file1.txt
+C:\directory\file2.txt
+C:\directory\subDirectory\subFile1.dat
+
 
 
