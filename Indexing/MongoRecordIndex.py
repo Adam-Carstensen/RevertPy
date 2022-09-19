@@ -12,15 +12,11 @@ class MongoRecordIndex():
     self.db = self.mongoClient.get_database(databaseName)
     self.collection = self.db.get_collection(collectionName)
 
-    # if len(self.collection.index_information()) <= 1:
-    #    self.collection.create_index([("key", pymongo.DESCENDING)])
 
   def find(self, filter):
     return self.collection.find(filter)
 
   def add(self, item):
-    # existingItems = self.collection.find({"_id", item["id"]})
-    # if (len(existingItems) == 0):
     return self.collection.insert_one(item).inserted_id
 
   def addRange(self, items):

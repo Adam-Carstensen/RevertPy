@@ -1,14 +1,7 @@
-from RevertPy.IO.FileIterable import FileIterable
+from IO.FileIterable import FileIterable
 
-
-
-path = "C:\Dev\MacroQuest"
-
-fileIterable = FileIterable(path)
-
+path = "C:\directory"
+fileIterable = FileIterable(path, fileFilter="*.dat")
 for file in fileIterable:
   print(file)
-
-
-
 

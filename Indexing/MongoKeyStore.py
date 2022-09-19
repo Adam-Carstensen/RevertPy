@@ -19,7 +19,6 @@ class MongoKeyStore():
     if self.get(key) == None:
       self.collection.insert_one({"key": key })
 
-
   def addRange(self, keysToAdd):
     formattedItems = []
     for key in keysToAdd:

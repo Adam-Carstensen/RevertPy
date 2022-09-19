@@ -14,9 +14,6 @@ print(f"{success}: {values}")
 success, values = trie.evaluateKeys(["feeling", "great"])
 print(f"{success}: {values}")
 
-success, values = trie.evaluateKeys(["feeling"])
-print(f"{success}: {values}")
-
 success, values = trie.evaluateKeys(["I'm", "feeling", "fine"])
 print(f"{success}: {values}")
 
