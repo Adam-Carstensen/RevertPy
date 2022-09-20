@@ -2,20 +2,10 @@
 
 Python port of Revert Libraries
 
-Trie DataStructure
-
-FileIterable
-
-MongoRecordIndex
-MongoKeyStore 
-MongoKeyValueStore
-MongoKeyMultiValueStore
-
 Graph [Under Construction]
 GraphSearcher [Under Construction]
 
 SimpleTokenizer
-
 
 ## RevertPy.Indexing.MongoRecordIndex.py
 
