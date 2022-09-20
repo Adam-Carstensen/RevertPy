@@ -17,6 +17,40 @@ GraphSearcher [Under Construction]
 SimpleTokenizer
 
 
+## RevertPy.Indexing.MongoRecordIndex.py
+
+Used for storing and managing dictionary objects in MongoDB.
+
+For example, a new record can be saved into MongoDB with the following code:
+```
+from Indexing.MongoRecordIndex import MongoRecordIndex
+
+testRecord = {
+                "Key" : "Testing",
+                "Value" : 
+                { 
+                  "First Name" : "John", 
+                  "Last Name" : "Doe" 
+                } 
+              }
+
+recordIndex = MongoRecordIndex("mongodb://localhost:27017", "MongoIndexingTests", "RecordIndexTest")
+recordIndex.add(testRecord)
+```
+
+After your MongoRecordIndex is populated with data, you can query it using the find function.
+```
+from Indexing.MongoRecordIndex import MongoRecordIndex
+
+recordIndex = MongoRecordIndex("mongodb://localhost:27017", "DatabaseName", "CollectionName")
+
+#returns a pymongo Cursor object, which you can iterate
+findResult = recordIndex.find({ "Key": "Testing"})
+
+for item in findResult:
+  print(item)
+```
+
 ## RevertPy.Indexing.MongoKeyStore.py
 
 Used for storing individual distinct values and checking for their presence.
@@ -58,39 +92,10 @@ print(returnValue)
 Notice how "Key 2" doesn't match the datatype of the 2nd key, so it returns None, but "Key One", and 2 match existing keys. 
 
 
-## RevertPy.Indexing.MongoRecordIndex.py
+## RevertPy.DataStructures.MongoKeyValueStore.py
 
-Used for storing and managing dictionary objects in MongoDB.
 
-For example, a new record can be saved into MongoDB with the following code:
-```
-from Indexing.MongoRecordIndex import MongoRecordIndex
 
-testRecord = {
-                "Key" : "Testing",
-                "Value" : 
-                { 
-                  "First Name" : "John", 
-                  "Last Name" : "Doe" 
-                } 
-              }
-
-recordIndex = MongoRecordIndex("mongodb://localhost:27017", "MongoIndexingTests", "RecordIndexTest")
-recordIndex.add(testRecord)
-```
-
-After your MongoRecordIndex is populated with data, you can query it using the find function.
-```
-from Indexing.MongoRecordIndex import MongoRecordIndex
-
-recordIndex = MongoRecordIndex("mongodb://localhost:27017", "DatabaseName", "CollectionName")
-
-#returns a pymongo Cursor object, which you can iterate
-findResult = recordIndex.find({ "Key": "Testing"})
-
-for item in findResult:
-  print(item)
-```
 
 ## RevertPy.DataStructures.Trie.py
 
