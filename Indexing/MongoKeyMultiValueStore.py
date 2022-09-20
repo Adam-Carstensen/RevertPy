@@ -30,7 +30,7 @@ class MongoKeyMultiValueStore():
 
   def get(self, key):
     results = []
-    for item in self.collection.find({key: key}):
+    for item in self.collection.find({"key": key}):
       results.append(item["value"])
     return results
 
@@ -72,7 +72,7 @@ class MongoKeyMultiValueStore():
     return success, values
 
   def deleteAll(self):
-    deleteResult = self.collection.delete_many()
+    deleteResult = self.collection.delete_many({})
     if (deleteResult.acknowledged == False or deleteResult.deleted_count == 0):
       return False
     return True

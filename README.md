@@ -94,8 +94,74 @@ Notice how "Key 2" doesn't match the datatype of the 2nd key, so it returns None
 
 ## RevertPy.DataStructures.MongoKeyValueStore.py
 
+Used for storing values associated with a key.  Only one value per key may be stored in this collection.
+For multiple values, refer to RevertPy.DataStructures.MongoKeyMultiValueStore.py.
 
+For example, if we wanted to build a program that returned ordinal text for integers, for fun, we could do it with a lookup:
+```
+from Indexing.MongoKeyValueStore import MongoKeyValueStore
 
+keyValueStore = MongoKeyValueStore("mongodb://localhost:27017", "MongoIndexingTests", "KeyValueStoreTest")
+
+keys = [1, 2, 3, 4, 5]
+values = ["First", "Second", "Third", "Fourth", "Fifth"]
+
+for i in range(0, len(keys)):
+  keyValueStore.upsert(keys[i], values[i])
+```
+That inserts the first 5 positive integers and their ordinal spellings.  Notice the use of upsert for insertions and updates.
+To fetch an existing record, we use get:
+```
+from Indexing.MongoKeyValueStore import MongoKeyValueStore
+keyValueStore = MongoKeyValueStore("mongodb://localhost:27017", "MongoIndexingTests", "KeyValueStoreTest")
+
+value = keyValueStore.get(4)
+print(value)
+```
+> {'_id': ObjectId('6329c38795ea62dedcac018f'), 'key': 4, 'value': 'Fourth'}
+
+Notice that it returns the full MongoDB record and not just the value.  It's a dictionary, so fetching value is simple:
+```
+print(value["value"])
+```
+> Fourth
+
+## RevertPy.Indexing.MongoKeyMultiValueStore.py
+
+Used for storing multiple values associated with a key.
+
+For example, if we wanted to do a token based indexing, we can use a tokenizer and a simple text along with the MongoKeyMultiValueStore:
+
+```
+from Indexing.MongoKeyMultiValueStore import MongoKeyMultiValueStore
+from Tokenization.SimpleTokenizer import SimpleTokenizer
+
+keyMultiValueStore = MongoKeyMultiValueStore("mongodb://localhost:27017", "MongoIndexingExamples", "KeyMultiValueStoreTest")
+tokenizer = SimpleTokenizer()
+
+paragraph0 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur efficitur pulvinar cursus."
+paragraph1 = "Curabitur non placerat purus. In hac habitasse platea dictumst. Cras placerat consequat sapien id ultrices."
+paragraph2 = "Aenean quis lorem pharetra purus posuere rutrum. Nulla at porta sapien, feugiat varius nisl."
+
+paragraphs = [paragraph0, paragraph1, paragraph2]
+for i in range(0, len(paragraphs)):
+  paragraphTokens = tokenizer.getTokens(paragraphs[i])
+  for token in paragraphTokens:
+    keyMultiValueStore.add(token, i)
+```
+
+Now, we have a database entry where you can query for any of the tokens and get their related values:
+```
+values = keyMultiValueStore.get("platea")
+print(values)
+```
+> [1]
+or
+```
+values = keyMultiValueStore.get("purus")
+print(values)
+```
+> [1, 2]
 
 ## RevertPy.DataStructures.Trie.py
 

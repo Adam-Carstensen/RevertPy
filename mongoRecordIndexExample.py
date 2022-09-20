@@ -9,7 +9,7 @@ testRecord = {
                 } 
               }
 
-recordIndex = MongoRecordIndex("mongodb://localhost:27017", "MongoIndexingTests", "RecordIndexTest")
+recordIndex = MongoRecordIndex("mongodb://localhost:27017", "MongoIndexingExamples", "RecordIndexTest")
 
 recordIndex.add(testRecord)
 

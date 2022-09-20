@@ -1,9 +1,8 @@
 from Indexing.MongoKeyStore import MongoKeyStore
 
+keyStore = MongoKeyStore("mongodb://localhost:27017", "MongoIndexingExamples", "KeyStoreTest")
+
 keys = [ "Key One", 2, ("Key", 3)]
-
-keyStore = MongoKeyStore("mongodb://localhost:27017", "MongoIndexingTests", "KeyStoreTest")
-
 for key in keys:
   keyStore.add(key)
 

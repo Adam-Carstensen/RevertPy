@@ -1,5 +1,3 @@
-from mimetypes import init
-
 import sys
 import typing
 import unicodedata
