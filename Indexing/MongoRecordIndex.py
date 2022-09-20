@@ -1,5 +1,4 @@
-from pymongo import MongoClient, ReturnDocument
-import pymongo
+from pymongo import MongoClient
 
 class MongoRecordIndex():
  

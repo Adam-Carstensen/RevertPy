@@ -16,7 +16,6 @@ class MongoKeyMultiValueStore():
     if len(self.collection.index_information()) <= 1:
        self.collection.create_index([("key", pymongo.DESCENDING)])
 
-
   def add(self, key, value):
     self.collection.insert_one({"key": key, "value": value})
 
@@ -25,7 +24,6 @@ class MongoKeyMultiValueStore():
     for item in itemsToAdd:
       formattedItems.append({"key": key, "value": item})
     self.collection.insert_many(formattedItems)
-
 
   def update(self, key, oldValue, newValue):
     return self.collection.find_one_and_update({"key": key, "value": oldValue}, { "$set": { "value": newValue }}, return_document=ReturnDocument.AFTER)

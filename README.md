@@ -16,6 +16,48 @@ GraphSearcher [Under Construction]
 
 SimpleTokenizer
 
+
+## RevertPy.Indexing.MongoKeyStore.py
+
+Used for storing individual distinct values and checking for their presence.
+
+For example, some misc keys can be saved into MongoDB with the following code:
+```
+from Indexing.MongoKeyStore import MongoKeyStore
+
+keys = [ "Key One", 2, ("Key", 3)]
+
+keyStore = MongoKeyStore("mongodb://localhost:27017", "MongoIndexingTests", "KeyStoreTest")
+
+for key in keys:
+  keyStore.add(key)
+```
+
+Notice how the different types are stored with no problems.
+Querying for existing keys in the store is as easy as using get and checking for None.
+```
+from Indexing.MongoKeyStore import MongoKeyStore
+
+keyStore = MongoKeyStore("mongodb://localhost:27017", "MongoIndexingTests", "KeyStoreTest")
+
+returnValue = keyStore.get("Key One")
+print(returnValue)
+```
+> {'_id': ObjectId('6329a7154347467af253f0d0'), 'key': 'Key One'}
+```
+returnValue = keyStore.get("Key 2")
+print(returnValue)
+```
+> None
+```
+returnValue = keyStore.get(2)
+print(returnValue)
+```
+> {'_id': ObjectId('6329a7154347467af253f0d1'), 'key': 2}
+
+Notice how "Key 2" doesn't match the datatype of the 2nd key, so it returns None, but "Key One", and 2 match existing keys. 
+
+
 ## RevertPy.Indexing.MongoRecordIndex.py
 
 Used for storing and managing dictionary objects in MongoDB.
@@ -33,7 +75,7 @@ testRecord = {
                 } 
               }
 
-recordIndex = MongoRecordIndex("mongodb://localhost:27017", "DatabaseName", "CollectionName")
+recordIndex = MongoRecordIndex("mongodb://localhost:27017", "MongoIndexingTests", "RecordIndexTest")
 recordIndex.add(testRecord)
 ```
 
@@ -49,11 +91,6 @@ findResult = recordIndex.find({ "Key": "Testing"})
 for item in findResult:
   print(item)
 ```
-
-
-
-
-
 
 ## RevertPy.DataStructures.Trie.py
 

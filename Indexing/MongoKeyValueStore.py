@@ -15,12 +15,6 @@ class MongoKeyValueStore():
     if len(self.collection.index_information()) <= 1:
        self.collection.create_index([("key", pymongo.DESCENDING)])
 
-  # def add(self, key, value):
-  #   if self.get(key) == None:
-  #     self.collection.insert_one({"key": key, "value": value})
-  #   else:
-  #     self.collection.find_one_and_update({"key": key}, { "$set": { "value": value }}, return_document=ReturnDocument.AFTER)
-
   def addRange(self, key, itemsToAdd):
     formattedItems = []
     for item in itemsToAdd:

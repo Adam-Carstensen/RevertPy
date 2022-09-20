@@ -1,4 +1,4 @@
-from pymongo import MongoClient, ReturnDocument
+from pymongo import MongoClient
 import pymongo
 
 class MongoKeyStore():

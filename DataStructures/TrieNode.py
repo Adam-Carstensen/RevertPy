@@ -103,9 +103,8 @@ class TrieNode():
     return self.__tryEvaluateKeysByPositionStrict(keys, 0, [])
 
   def __tryEvaluateKeysByPositionStrict(self, keys, position, values) -> bool:
-    values = values + list(self.getValues())
-
     if len(keys) <= position:
+      values = values + list(self.getValues())
       return any(values), values
 
     currentKey = keys[position]
