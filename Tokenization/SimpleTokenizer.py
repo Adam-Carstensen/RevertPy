@@ -8,7 +8,7 @@ class SimpleTokenizer:
 
   def __init__(self) -> None:
     pass
-
+  
   unicodeCategory = defaultdict(list)
   for c in map(chr, range(sys.maxunicode + 1)):
     unicodeCategory[unicodedata.category(c)].append(c)

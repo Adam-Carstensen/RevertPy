@@ -5,8 +5,6 @@ Python port of Revert Libraries
 Graph [Under Construction]
 GraphSearcher [Under Construction]
 
-SimpleTokenizer
-
 ## RevertPy.Indexing.MongoRecordIndex.py
 
 Used for storing and managing dictionary objects in MongoDB.
@@ -146,6 +144,7 @@ values = keyMultiValueStore.get("platea")
 print(values)
 ```
 > [1]
+
 or
 ```
 values = keyMultiValueStore.get("purus")
@@ -233,4 +232,22 @@ for file in fileIterable:
 
 > C:\directory\subDirectory\subFile1.dat
 
+## SimpleTokenizer
+
+Used for breaking text into a list of tokens.  SimpleTokenizer doesn't include punctuation, and will cause punctuated words to become multiple tokens.
+> "He's" becomes "He" + "s"
+
+Interestingly, the SimpleTokenizer works with a great deal of foreign languages and character sets because it uses Unicode Character Categories.
+
+"Lu" - Uppercase Letter, "Ll" - Lowercase Letter, and "Nd" - Decimal Number
+
+For example, if you want to tokenize a sentence, you could use the code below:
+```
+from Tokenization.SimpleTokenizer import SimpleTokenizer
+
+tokenizer = SimpleTokenizer()
+tokens = tokenizer.getTokens("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+print(tokens)
+```
+> ['Lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit']
 
