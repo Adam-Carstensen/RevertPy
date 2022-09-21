@@ -232,7 +232,7 @@ for file in fileIterable:
 
 > C:\directory\subDirectory\subFile1.dat
 
-## SimpleTokenizer
+## RevertPy.Tokenization.SimpleTokenizer
 
 Used for breaking text into a list of tokens.  SimpleTokenizer doesn't include punctuation, and will cause punctuated words to become multiple tokens.
 > "He's" becomes "He" + "s"
